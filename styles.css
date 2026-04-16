@@ -71,12 +71,12 @@ img {
 
 /* Typography Scale */
 h1 {
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
     letter-spacing: -0.02em;
 }
 
 h2 {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-size: clamp(2rem, 6vw, 3.5rem);
     margin-bottom: var(--spacing-md);
 }
 
@@ -150,15 +150,19 @@ h3 {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 0.5rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 0.5rem 0%;
+    /* Horizontal padding moved to container */
     z-index: 100;
     background: rgba(250, 250, 250, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--color-border);
     transition: transform 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar.hidden {
@@ -201,17 +205,27 @@ h3 {
 
 /* Sections */
 section {
-    padding: var(--spacing-xl) 5%;
+    padding-block: var(--spacing-xl);
+}
+
+.container {
+    max-width: 1360px;
+    margin: 0 auto;
+    width: 100%;
+
 }
 
 /* Hero */
 .hero {
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    padding-top: calc(80px + var(--spacing-xl));
+}
+
+.hero .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-lg);
-    padding-top: calc(80px + var(--spacing-md));
+    gap: 10%;
 }
 
 .hero-content {
@@ -253,34 +267,49 @@ section {
 
 /* Split Sections (Story & Region) */
 .split-section {
+    background-color: var(--color-bg-secondary);
+}
+
+.split-section .container {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xl);
-    background-color: var(--color-bg-secondary);
+    justify-content: space-between;
+    gap: 80px;
 }
 
 .split-section.reverse {
     flex-direction: row-reverse;
-    background-color: var(--color-bg-primary);
 }
 
 .story-content,
 .region-content {
-    flex: 1;
-    max-width: 500px;
+    flex: none;
+    max-width: 630px;
+}
+
+.lifestyle .container {
+    display: flex;
+    justify-content: center;
 }
 
 .story-image,
 .region-image {
     flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.split-section.reverse .story-image,
+.split-section.reverse .region-image {
+    justify-content: flex-start;
 }
 
 .story-image img,
 .region-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    aspect-ratio: 4/5;
+    max-width: 680px;
+    height: auto;
+    margin: 0;
 }
 
 .emphasis {
@@ -296,7 +325,8 @@ section {
     padding: 1rem;
     background: white;
     border: 1px solid var(--color-border);
-    display: block;
+    display: inline-block;
+    /* max-width: 90%; */
 }
 
 .premium-frame img {
@@ -323,13 +353,10 @@ section {
 /* The Wine */
 .wine {
     background-color: var(--color-bg-primary);
-    padding-top: var(--spacing-lg);
-    padding-bottom: var(--spacing-xl);
 }
 
 .wine-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    /* Standardized by .container in HTML */
 }
 
 .wine-header {
@@ -414,7 +441,6 @@ section {
 /* Lifestyle */
 .lifestyle {
     position: relative;
-    padding: 0;
     min-height: 80vh;
     display: flex;
     align-items: center;
@@ -467,14 +493,327 @@ section {
     font-size: 1.25rem;
 }
 
-/* Allocation section styles removed */
+/* Varietal Sections Enhancement */
+.varietal-section {
+    /* Standardized by section base */
+}
+
+.shadow-section {
+    background-color: var(--color-bg-primary);
+    position: relative;
+    z-index: 10;
+}
+
+.story-image {
+    flex: none;
+}
+
+/* Section Rhythm Overrides */
+#region {
+    background-color: var(--color-bg-secondary);
+}
+
+#chardonnay {
+    background-color: var(--color-bg-primary);
+}
+
+#merlot {
+    background-color: var(--color-bg-secondary);
+}
+
+/* Dark Varietal Layout (Cabernet) */
+.dark-varietal {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0;
+    overflow: hidden;
+}
+
+.dark-varietal-container {
+    display: flex;
+    align-items: stretch;
+    min-height: 80vh;
+}
+
+.dark-varietal-content {
+    flex: 1;
+    padding: var(--spacing-xl) 5% var(--spacing-xl) max(5%, calc(50% - 770px + 5%));
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dark-varietal-content h2,
+.dark-varietal-content p {
+    color: white;
+}
+
+.dark-varietal-image {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.varietal-section .container {
+    gap: 80px;
+}
+
+.floating-image {
+    flex: 1;
+    width: 100%;
+}
+
+.floating-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+.varietal-details {
+    display: flex;
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0 var(--spacing-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: var(--spacing-md);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+}
+
+.detail-value {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+}
+
+/* Merlot styles moved to rhythm overrides */
+
+/* Collector Section (Mockup) */
+.collector-section {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.collector-section .container {
+    display: flex;
+    /* justify-content: flex-end; */
+}
+
+.collector-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.collector-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* object-position: left center; */
+}
+
+.collector-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 2;
+}
+
+.collector-content {
+    position: relative;
+    z-index: 3;
+    max-width: 570px;
+    color: white;
+}
+
+.collector-inner {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(20px);
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.collector-inner h2 {
+    color: white;
+    margin-bottom: var(--spacing-md);
+}
+
+.collector-inner p {
+    color: #E0DED8;
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.benefit-list {
+    list-style: none;
+    margin-bottom: var(--spacing-lg);
+}
+
+.benefit-list li {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+}
+
+.benefit-list li::before {
+    content: "—";
+    margin-right: var(--spacing-sm);
+    color: var(--color-accent);
+}
+
+/* Animation refinement for new sections */
+.dark-varietal-image.reveal {
+    transform: translateX(50px);
+}
+
+.dark-varietal-image.reveal.active {
+    transform: translateX(0);
+}
+
+@media (max-width: 991px) {
+    .dark-varietal-container {
+        flex-direction: column;
+    }
+
+    .dark-varietal-content {
+        padding: var(--spacing-lg) 20px;
+        order: 2;
+    }
+
+    .dark-varietal-image {
+        width: 100%;
+        height: 50vh;
+        order: 1;
+    }
+
+    .collector-section {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .collector-content {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .collector-inner {
+        padding: var(--spacing-xl) 20px;
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* Featured Varietal (Redesigned Chardonnay) */
+.featured-varietal {
+    background-color: var(--color-bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.varietal-center-container {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.region .region-image {
+    flex: 0.8;
+}
+
+.varietal-visual {
+    flex: 1.4;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.varietal-visual img {
+    width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    transform: scale(1.2);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15));
+    transition: transform 0.6s ease;
+}
+
+.varietal-visual:hover img {
+    transform: scale(1.25);
+}
+
+.varietal-info-card {
+    flex: 1;
+    background: white;
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border);
+    /* box-shadow: 20px 20px 0 rgba(122, 31, 45, 0.1); */
+    position: relative;
+    z-index: 2;
+}
+
+.varietal-narrative p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+.varietal-narrative p:last-child {
+    margin-bottom: 0;
+}
+
+.varietal-cta {
+    margin-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+}
+
+@media (max-width: 991px) {
+    .varietal-center-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .varietal-visual img {
+        max-height: 50vh;
+    }
+
+    .varietal-info-card {
+        padding: var(--spacing-md);
+        /* box-shadow: 10px 10px 0 rgba(122, 31, 45, 0.1); */
+    }
+}
 
 /* Footer & Final CTA */
 .footer {
     background-color: var(--color-accent);
     color: white;
-    padding: var(--spacing-xl) 5% var(--spacing-md);
     text-align: center;
+    padding: 80px 20px 20px 20px;
 }
 
 .footer-cta h2,
@@ -529,7 +868,17 @@ section {
 }
 
 /* Media Queries */
-@media (max-width: 900px) {
+@media (max-width: 991px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     :root {
         --spacing-xl: 4rem;
         --spacing-lg: 2.5rem;
@@ -537,7 +886,7 @@ section {
     }
 
     .navbar {
-        padding: 1rem 5%;
+        padding: 1rem 0;
     }
 
     .nav-links {
@@ -552,15 +901,15 @@ section {
         flex-direction: column;
     }
 
-    .hero,
-    .split-section {
+    .hero .container,
+    .split-section .container {
         flex-direction: column;
         text-align: center;
         gap: var(--spacing-lg);
     }
 
-    .split-section.reverse {
-        flex-direction: column;
+    .split-section.reverse .container {
+        flex-direction: column-reverse;
     }
 
     .hero-buttons {
@@ -603,6 +952,8 @@ section {
         gap: 1rem;
         text-align: center;
     }
+
+
 }
 
 @media (max-width: 600px) {
@@ -610,9 +961,15 @@ section {
         display: none;
     }
 
-    .navbar {
-        flex-direction: row;
+    .nav-container {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+    }
+
+    .navbar {
+        padding: 1rem 0;
     }
 
     .wine-grid {
@@ -621,6 +978,7 @@ section {
 
     .footer-buttons {
         flex-direction: column;
+        align-items: center;
         gap: 1rem;
     }
 
@@ -630,7 +988,12 @@ section {
 
     .btn {
         width: 100%;
+        max-width: 300px;
         text-align: center;
         padding: 1rem 1.5rem;
+    }
+
+    .story .container {
+        flex-direction: column-reverse;
     }
 }
